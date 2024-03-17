@@ -1,11 +1,17 @@
 from tkinter import *
+import pygame
+
+
 WIDTH = 597
 HEIGHT = 350
 xSpeed = 1 #speed of ball
 ySpeed = 1
 player1_score = 0
 player2_score = 0
-
+# Initialize pygame mixer
+pygame.mixer.init()
+bounce_sound = pygame.mixer.Sound("bounce.mp3")
+pygame.mixer.music.load("game_music.mp3")
 
 def player1_move_up(event):
     if canvas.coords(player1)[1] > 0:
@@ -38,12 +44,14 @@ def move_ball():
             coordinates[1] <= player2_coords[3] and
             coordinates[2] >= player2_coords[0] and
             coordinates[3] >= player2_coords[1]):
+        bounce_sound.play()
         xSpeed = -xSpeed  # Change ball's direction
     player1_coords = canvas.coords(player1)
     if (coordinates[0] <= player1_coords[2] and
             coordinates[1] <= player1_coords[3] and
             coordinates[2] >= player1_coords[0] and
             coordinates[3] >= player1_coords[1]):
+        bounce_sound.play()
         xSpeed = -xSpeed  # Change ball's direction
 
     if(coordinates[0]>=(WIDTH - ball_width)):
@@ -89,7 +97,7 @@ window.bind("<w>", player1_move_up)
 window.bind("<s>", player1_move_down)
 window.bind("<Up>", player2_move_up)
 window.bind("<Down>", player2_move_down)
-
+pygame.mixer.music.play()
 move_ball()
 
 window.mainloop()
