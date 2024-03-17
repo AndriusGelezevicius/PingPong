@@ -1,11 +1,12 @@
+import time
 from tkinter import *
 import pygame
 
 
 WIDTH = 597
 HEIGHT = 350
-xSpeed = 1 #speed of ball
-ySpeed = 1
+xSpeed = 1.5 #speed of ball
+ySpeed = 1.5
 player1_score = 0
 player2_score = 0
 # Initialize pygame mixer
@@ -74,7 +75,9 @@ def move_ball():
     window.after(10, move_ball)
 
 def reset_game():
+    time.sleep(2)
     canvas.coords(ball, 287,140,297,150)
+
 
 
 window = Tk()
