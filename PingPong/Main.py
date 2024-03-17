@@ -8,16 +8,20 @@ player2_score = 0
 
 
 def player1_move_up(event):
-    canvas.move(player1, 0, -10)
+    if canvas.coords(player1)[1] > 0:
+        canvas.move(player1, 0, -10)
 
 def player1_move_down(event):
-    canvas.move(player1, 0, 10)
+    if canvas.coords(player1)[3] < HEIGHT:
+        canvas.move(player1, 0, 10)
 
 def player2_move_up(event):
-    canvas.move(player2, 0, -10)
+    if canvas.coords(player2)[1] > 0:
+        canvas.move(player2, 0, -10)
 
 def player2_move_down(event):
-    canvas.move(player2, 0, 10)
+    if canvas.coords(player2)[3] < HEIGHT:
+        canvas.move(player2, 0, 10)
 
 def move_ball():
     global player1_score
