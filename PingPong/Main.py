@@ -3,6 +3,9 @@ WIDTH = 597
 HEIGHT = 350
 xSpeed = 1 #speed of ball
 ySpeed = 1
+player1_score = 0
+player2_score = 0
+
 
 def player1_move_up(event):
     canvas.move(player1, 0, -10)
@@ -46,6 +49,8 @@ def move_ball():
     canvas.move(ball, xSpeed, 0)
     canvas.move(ball, 0, ySpeed)
     window.after(10, move_ball)
+
+
 window = Tk()
 window.geometry("600x400")
 window.title("Ping Pong")
@@ -53,6 +58,12 @@ window.title("Ping Pong")
 canvas = Canvas(window, height=HEIGHT, width=WIDTH, background="black")
 player1 = canvas.create_rectangle(10,120,20,200, fill="white")
 player2 = canvas.create_rectangle(577,120,587,200, fill="white")
+player1_label = Label(window, text="Player 1: " + str(player1_score))
+player1_label.place(x=225, y=30)
+player2_label = Label(window, text="Player 2: " + str(player2_score))
+player2_label.place(x=325, y=30)
+score_label = Label(window, text="Score", font=('Arial', 10, 'bold', 'underline'))
+score_label.pack()
 ball = canvas.create_oval(287,140,297,150, fill="white")
 canvas.place(x=0, y=50)
 
